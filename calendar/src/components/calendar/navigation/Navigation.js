@@ -13,9 +13,9 @@ const Navigation = (props) => {
                 <span className="navigator" onClick={() => props.nextMonth()}>&rarr;</span>
             </span>
             <span className="year-nav">
-                <span className="navigator" onClick={() => props.prevMonth()}>&larr;</span>
+                <span className="navigator" onClick={() => props.prevYear()}>&larr;</span>
                 <span className="navigator-value">{year}</span>
-                <span className="navigator" onClick={() => props.nextMonth()}>&rarr;</span>
+                <span className="navigator" onClick={() => props.nextYear()}>&rarr;</span>
             </span>
         </div>
     )

@@ -20,6 +20,14 @@ class Calendar extends Component {
         this.changeMonthBy(+1);
     };
 
+    prevYear = () => {
+        this.changeYearBy(-1);
+    };
+
+    nextYear = () => {
+        this.changeYearBy(+1);
+    };
+
     changeMonthBy = (value) => {
         this.setState((prevState) => {
             const newDate = new Date(prevState.date.getTime());
@@ -30,10 +38,23 @@ class Calendar extends Component {
         });
     };
 
+    changeYearBy = (value) => {
+        this.setState((prevState) => {
+            const newDate = new Date(prevState.date.getTime());
+            newDate.setYear(newDate.getFullYear() + value);
+            return {
+                date: newDate
+            }
+        });
+    };
+
     render() {
         return (
             <div className="calendar">
-                <Navigation date={this.state.date} nextMonth={this.nextMonth} prevMonth={this.prevMonth} />
+                <Navigation
+                    date={this.state.date}
+                    nextMonth={this.nextMonth} prevMonth={this.prevMonth}
+                    nextYear={this.nextYear} prevYear={this.prevYear} />
                 <DayList date={this.state.date} />
             </div>
         );

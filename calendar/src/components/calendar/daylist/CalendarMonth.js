@@ -24,7 +24,7 @@ const createDayEntries = (month, year) => {
                 if (today.getFullYear() === year && today.getMonth() === month && today.getDate() === (i - offset + 1)) {
                     isToday = true;
                 }
-                return <DayEntry key={i + 1 - offset} day={i + 1 - offset} isToday={isToday} />;
+                return <DayEntry key={i + 1 - offset} day={i + 1 - offset} isToday={isToday}/>;
             });
     };
 

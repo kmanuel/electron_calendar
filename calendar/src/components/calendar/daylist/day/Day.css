@@ -3,6 +3,10 @@
     flex: 0 0 14%;
 }
 
+.day.active {
+    background-color: green;
+}
+
 .day:hover {
     background-color: red;
 }

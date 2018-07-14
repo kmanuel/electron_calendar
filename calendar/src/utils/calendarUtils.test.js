@@ -31,4 +31,8 @@ describe('calendarUtils', () => {
         expect(utils.getWeekdayOffsetForMonth(10, 2018)).toBe(3);
     });
 
+    it('should return weekday offset 6 for 1st sunday', () => {
+        expect(utils.getWeekdayOffsetForMonth(6, 2018)).toBe(6);
+    })
+
 });

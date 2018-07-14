@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Navigation from './navigation/Navigation';
-import DayList from './daylist/DayList';
+import DayList from './daylist/CalendarMonth';
 
 import './Calendar.css';
 

@@ -9,7 +9,7 @@ const Navigation = (props) => {
         <div className="navigation">
             <span className="month-nav">
                 <span className="navigator" onClick={() => props.prevMonth()}>&larr;</span>
-                <span className="navigator-value">{utils.nameForMonth(month + 1)}</span>
+                <span className="navigator-value">{utils.nameForMonth(month)}</span>
                 <span className="navigator" onClick={() => props.nextMonth()}>&rarr;</span>
             </span>
             <span className="year-nav">

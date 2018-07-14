@@ -34,7 +34,7 @@ const createDayEntries = (month, year) => {
         return Array.from(Array(entryCount + offset))
             .map((e, i) => {
                 if (i < offset) {
-                    return fillerEntry(i)
+                    return fillerEntry(i);
                 } else {
                     return dayEntry(year, month, i, offset);
                 }

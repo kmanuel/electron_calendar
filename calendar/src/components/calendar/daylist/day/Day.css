@@ -1,6 +1,7 @@
 .day {
     border: 1px solid black;
-    flex: 0 0 16%;
+    flex: 0 0 13.85%;
+    height: 25px;
 }
 
 .day.active {

@@ -14,22 +14,36 @@ const CalendarMonth = (props) => {
     );
 };
 
-const createDayEntries = (month, year) => {
+const isToday = function (year, month, i, offset) {
     const today = new Date();
+    return today.getFullYear() === year && today.getMonth() === month && today.getDate() === (i - offset + 1);
+};
+
+const fillerEntry = function (i) {
+    return <div key={i} className="day"/>;
+};
+
+const dayEntry = function (year, month, i, offset) {
+    let today = isToday(year, month, i, offset);
+    return <DayEntry key={i} day={i + 1 - offset} today={today}/>
+};
+
+const createDayEntries = (month, year) => {
     const createNDayEntries = function (entryCount, offset = 0) {
         //noinspection UnreachableCodeJS,JSPotentiallyInvalidConstructorUsage
         return Array.from(Array(entryCount + offset))
             .map((e, i) => {
-                let isToday = false;
-                if (today.getFullYear() === year && today.getMonth() === month && today.getDate() === (i - offset + 1)) {
-                    isToday = true;
+                if (i < offset) {
+                    return fillerEntry(i)
+                } else {
+                    return dayEntry(year, month, i, offset);
                 }
-                return <DayEntry key={i + 1 - offset} day={i + 1 - offset} isToday={isToday}/>;
             });
     };
 
     let daysInCurrentMonth = utils.daysInMonth(month, year);
     const weekdayOffset = utils.getWeekdayOffsetForMonth(month, year);
+
     return createNDayEntries(daysInCurrentMonth, weekdayOffset);
 };
 

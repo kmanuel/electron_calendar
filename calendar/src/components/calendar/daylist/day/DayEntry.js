@@ -3,7 +3,7 @@ import './Day.css';
 
 const DayEntry = (props) => {
     return (
-        <div className={`day ${props.isToday ? 'active' : ''}`}>{props.day > 0 ? props.day : ''}</div>
+        <div className={`day ${props.today ? 'active' : ''}`}>{props.day > 0 ? props.day : ''}</div>
     );
 };
 

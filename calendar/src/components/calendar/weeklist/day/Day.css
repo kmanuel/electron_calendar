@@ -1,0 +1,8 @@
+.day {
+    border: 1px solid black;
+    flex: 0 0 14%;
+}
+
+.day:hover {
+    background-color: red;
+}

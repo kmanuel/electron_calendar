@@ -1,0 +1,4 @@
+.daylist {
+    display: flex;
+    flex-wrap: wrap;
+}

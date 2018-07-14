@@ -10,4 +10,19 @@ const getDaysInCurrentMonth = () => {
     return daysInMonth(currentMonth, currentYear);
 };
 
-export { daysInMonth, getDaysInCurrentMonth };
+const nameForMonth = (month) => {
+    const date = new Date();
+    date.setMonth(month);
+    return date.toLocaleString('en-us', {month: 'long'});
+};
+
+const getWeekdayOffsetForMonth = (month, year) => {
+    const date = new Date();
+    date.setMonth(month);
+    date.setYear(year);
+    date.setDate(0);
+
+    return date.getDay();
+};
+
+export { daysInMonth, getDaysInCurrentMonth, nameForMonth, getWeekdayOffsetForMonth };

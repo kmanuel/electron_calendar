@@ -8,7 +8,6 @@ describe('calendar', () => {
         ReactDOM.render(<Calendar />, div);
         ReactDOM.unmountComponentAtNode(div);
     });
-
 });
 
 

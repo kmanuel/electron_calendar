@@ -21,6 +21,7 @@ const createDayEntries = (month, year) => {
 };
 
 const createNDayEntries = function (entryCount, offset = 0) {
+    //noinspection UnreachableCodeJS,JSPotentiallyInvalidConstructorUsage
     return Array.from(Array(entryCount))
         .map((e, i) => {
             return <DayEntry key={i + 1 - offset} day={i + 1 - offset}/>;

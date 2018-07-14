@@ -1,0 +1,20 @@
+.daydetail {
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+}
+
+.hours {
+    display: flex;
+    flex-direction: column;
+}
+
+.day-hour {
+    border-bottom: 1px solid black;
+    height: 25px;
+}
+
+.time {
+    position: absolute;
+    left: 30px;
+}

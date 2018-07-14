@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Navigation from './navigation/Navigation';
 import DayList from './daylist/CalendarMonth';
+import DayDetail from './daydetail/DayDetail';
 
 import './Calendar.css';
 
@@ -56,6 +57,7 @@ class Calendar extends Component {
                     nextMonth={this.nextMonth} prevMonth={this.prevMonth}
                     nextYear={this.nextYear} prevYear={this.prevYear} />
                 <DayList date={this.state.date} />
+                <DayDetail />
             </div>
         );
     }

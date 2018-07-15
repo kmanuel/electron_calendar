@@ -3,6 +3,7 @@ import {BrowserRouter as Router, Route} from 'react-router-dom';
 
 import MonthView from './monthview/CalendarMonth';
 import DayDetail from './dayview/DayDetail';
+import NewEntry from './newentry/NewEntry';
 
 import './Calendar.css';
 
@@ -19,8 +20,9 @@ class Calendar extends Component {
             <div className="calendar">
                 <Router>
                     <div>
-                        <Route exact path="/month/:year/:month" component={MonthView}/>
-                        <Route exact path="/month/:year/:month/:day" component={DayDetail}/>
+                        <Route path="/create/:year/:month/:day" component={NewEntry}/>
+                        <Route exact path="/month/:year/:month/:day/" component={DayDetail}/>
+                        <Route exact path="/month/:year/:month/" component={MonthView}/>
                     </div>
                 </Router>
             </div>

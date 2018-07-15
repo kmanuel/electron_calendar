@@ -25,12 +25,19 @@ class HourEntry extends Component {
         });
     }
 
+    renderAppointments() {
+        if (this.props.entries) {
+            return this.props.entries.map(e => <span className="appointment-entry">{e.title}</span>);
+        }
+    }
+
     render() {
         let { hour } = this.props;
         let selectedClass = this.state.selected ? 'selected' : '';
         return (
             <span className={`day-hour ${selectedClass}`} onClick={() => this.toggleSelect()}>
                 <span className="time">{hour} - {hour + 1}</span>
+                {this.renderAppointments()}
             </span>
         );
     }

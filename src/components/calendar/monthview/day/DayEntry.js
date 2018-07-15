@@ -7,8 +7,20 @@ const DayEntry = (props) => {
     const year = parseInt(props.year);
     const day = parseInt(props.day);
 
+    const entries = props.entries;
+
+    const showEntries = () => {
+        if (!entries) {
+            return;
+        }
+        return entries.map(e => <div>entry</div>);
+    };
+
     return (
-        <Link to={`/month/${year}/${month}/${day}`} className={`day ${props.today ? 'active' : ''}`}>{props.day > 0 ? props.day : ''}</Link>
+        <Link to={`/month/${year}/${month}/${day}`} className={`day ${props.today ? 'active' : ''}`}>
+            {props.day > 0 ? props.day : ''}
+            {showEntries()}
+        </Link>
     );
 };
 

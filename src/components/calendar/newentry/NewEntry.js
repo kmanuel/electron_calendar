@@ -25,6 +25,8 @@ class NewEntry extends Component {
         const {hours, title} = this.state;
 
         entryStore.storeEntry(year, month, day, hours, title);
+
+        this.props.history.goBack();
     }
 
     render() {

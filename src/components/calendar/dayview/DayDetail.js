@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import HourEntry from './hourentry/HourEntry';
+import {Link} from 'react-router-dom';
 import * as entryStore from '../../../utils/entryStore';
 import './DayDetail.css';
 
@@ -14,15 +15,21 @@ class DayDetail extends Component {
 
         const date = new Date(year, month, day);
 
-        console.log('entries for this day: ', entryStore.fetchEntries(year, month, day));
+        const calendarDayEntries = entryStore.fetchEntries(year, month, day);
 
-        this.state = {year, month, day, date, selectedHours: []};
+        this.state = {year, month, day, date, selectedHours: [], calendarDayEntries};
     }
 
     renderHours = () => {
         //noinspection JSPotentiallyInvalidConstructorUsage
         return Array.from(Array(24))
-            .map((e, hour) => <HourEntry key={hour} hour={hour} onSelect={this.setSelected}/>);
+            .map((e, hour) => {
+                const entries = this.state.calendarDayEntries;
+                const entriesForThisHour = entries.filter(e => e.hours.indexOf('' + hour) != -1);
+                console.log(entriesForThisHour);
+                return <HourEntry key={hour} hour={hour} onSelect={this.setSelected} entries={entriesForThisHour} />
+            });
+
     };
 
     setSelected = (hour, selected) => {
@@ -37,8 +44,6 @@ class DayDetail extends Component {
 
     createCalendarEntry() {
         const selectedHours = this.state.selectedHours.join(',');
-        console.log(`selectedHours: ${selectedHours}`);
-        console.log(`history: ${this.props.history}`);
         this.props.history.push(`/create/${this.state.year}/${this.state.month}/${this.state.day}?hours=${selectedHours}`);
     }
 
@@ -54,10 +59,10 @@ class DayDetail extends Component {
     }
 
     render() {
-        const {date} = this.state;
+        const {date, month, year} = this.state;
         return (
             <div className="daydetail">
-                <button onClick={this.props.history.goBack}>Back</button>
+                <Link to={`/month/${year}/${month}`}>Back</Link>
                 <h2>{date.toLocaleDateString()}</h2>
                 {this.createButtonIfSelectedHours()}
                 <ol className="hours">

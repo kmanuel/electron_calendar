@@ -35,7 +35,7 @@ const fillerEntry = function (i) {
 
 const dayEntry = function (year, month, i, offset) {
     let today = isToday(year, month, i, offset);
-    return <DayEntry key={i} day={i + 1 - offset} year={year} month={month} today={today}/>
+    return <DayEntry key={i} day={i + 1 - offset} today={today}/>
 };
 
 const createDayEntries = (month, year) => {

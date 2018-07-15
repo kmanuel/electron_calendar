@@ -12,9 +12,16 @@ class HourEntry extends Component {
 
     toggleSelect() {
         this.setState((prevState) => {
-            this.setState({
-                selected: !prevState.selected
-            });
+            let prev = prevState.selected;
+            if (!prev) {
+                prev = false;
+            }
+            const newSelected = !prev;
+            this.props.onSelect(this.props.hour, newSelected);
+            return {
+                selected: newSelected
+            };
+
         });
     }
 

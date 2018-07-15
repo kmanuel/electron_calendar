@@ -1,15 +1,25 @@
 import React from 'react';
+import Navigation from './navigation/Navigation';
 import DayEntry from './day/DayEntry';
 import * as utils from '../../../utils/calendarUtils';
 import './CalendarMonth.css';
 
 const CalendarMonth = (props) => {
-    const month = props.date.getMonth();
-    const year = props.date.getFullYear();
+    const month = parseInt(props.match.params.month);
+    const year = parseInt(props.match.params.year);
+
+    this.state = {
+        month,
+        year
+    };
+
     const dayEntries = createDayEntries(month, year);
     return (
-        <div className="calendarmonth">
-            {dayEntries}
+        <div>
+            <Navigation month={this.state.month} year={this.state.year} />
+            <div className="calendarmonth">
+                {dayEntries}
+            </div>
         </div>
     );
 };

@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
-import Navigation from './navigation/Navigation';
-import DayList from './daylist/CalendarMonth';
-import DayDetail from './daydetail/DayDetail';
+import {BrowserRouter as Router, Route} from 'react-router-dom';
+
+import MonthView from './monthview/CalendarMonth';
+import DayDetail from './dayview/DayDetail';
 
 import './Calendar.css';
 
@@ -13,51 +14,15 @@ class Calendar extends Component {
         };
     }
 
-    prevMonth = () => {
-        this.changeMonthBy(-1);
-    };
-
-    nextMonth = () => {
-        this.changeMonthBy(+1);
-    };
-
-    prevYear = () => {
-        this.changeYearBy(-1);
-    };
-
-    nextYear = () => {
-        this.changeYearBy(+1);
-    };
-
-    changeMonthBy = (value) => {
-        this.setState((prevState) => {
-            const newDate = new Date(prevState.date.getTime());
-            newDate.setMonth(newDate.getMonth() + value);
-            return {
-                date: newDate
-            }
-        });
-    };
-
-    changeYearBy = (value) => {
-        this.setState((prevState) => {
-            const newDate = new Date(prevState.date.getTime());
-            newDate.setYear(newDate.getFullYear() + value);
-            return {
-                date: newDate
-            }
-        });
-    };
-
     render() {
         return (
             <div className="calendar">
-                <Navigation
-                    date={this.state.date}
-                    nextMonth={this.nextMonth} prevMonth={this.prevMonth}
-                    nextYear={this.nextYear} prevYear={this.prevYear} />
-                <DayList date={this.state.date} />
-                <DayDetail />
+                <Router>
+                    <div>
+                        <Route path="/month/:year/:month" component={MonthView}/>
+                        <Route path="/day" component={DayDetail}/>
+                    </div>
+                </Router>
             </div>
         );
     }

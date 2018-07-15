@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 import './DayDetail.css';
 
 const renderHours = () => {
@@ -9,10 +10,17 @@ const renderHours = () => {
         </span>);
 };
 
-const DayDetail = () => {
+const DayDetail = (props) => {
+    const year = parseInt(props.match.params.year);
+    const month = parseInt(props.match.params.month);
+    const day = parseInt(props.match.params.day);
+
+    const date = new Date(year, month, day);
+
     return (
         <div className="daydetail">
-            <h2>14.07.2018</h2>
+            <Link to={`/month/${year}/${month}`}>Back</Link>
+            <h2>{date.toLocaleDateString()}</h2>
             <ol className="hours">
                 {renderHours()}
             </ol>

@@ -19,8 +19,8 @@ class Calendar extends Component {
             <div className="calendar">
                 <Router>
                     <div>
-                        <Route path="/month/:year/:month" component={MonthView}/>
-                        <Route path="/day" component={DayDetail}/>
+                        <Route exact path="/month/:year/:month" component={MonthView}/>
+                        <Route exact path="/month/:year/:month/:day" component={DayDetail}/>
                     </div>
                 </Router>
             </div>

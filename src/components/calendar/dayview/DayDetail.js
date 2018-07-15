@@ -1,13 +1,12 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import HourEntry from './hourentry/HourEntry';
 import './DayDetail.css';
 
 const renderHours = () => {
     //noinspection JSPotentiallyInvalidConstructorUsage
     return Array.from(Array(24))
-        .map((e, hour) => <span key={hour} className="day-hour">
-            <span className="time">{hour} - {hour + 1}</span>
-        </span>);
+        .map((e, hour) => <HourEntry key={hour} hour={hour} />);
 };
 
 const DayDetail = (props) => {

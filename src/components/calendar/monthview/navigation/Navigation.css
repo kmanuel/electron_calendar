@@ -20,6 +20,11 @@
     width: 100px;
 }
 
+.navigator {
+    text-decoration: none;
+    color: black;
+}
+
 .navigator:hover {
     cursor: pointer;
 }

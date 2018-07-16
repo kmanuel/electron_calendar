@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import HourEntry from './hourentry/HourEntry';
-import {Link} from 'react-router-dom';
 import * as entryStore from '../../../utils/entryStore';
 import './DayDetail.css';
 
@@ -25,12 +24,14 @@ class DayDetail extends Component {
         const {date, month, year} = this.state;
         return (
             <div className="daydetail">
-                <button onClick={() => this.props.history.goBack()}>Back</button>
-                <h2>{date.toLocaleDateString()}</h2>
-                {this.createButtonIfSelectedHours()}
+                <span class="head">
+                    <button className="btn" onClick={() => this.props.history.goBack()}>Back</button>
+                    <h2>{date.toLocaleDateString()}</h2>
+                </span>
                 <ol className="hours">
                     {this.renderHours(date)}
                 </ol>
+                {this.createButtonIfSelectedHours()}
             </div>
         );
     }
@@ -73,9 +74,9 @@ class DayDetail extends Component {
 
         const enabled = (selectedHours.length > 0);
         if (enabled) {
-            return <button onClick={() => this.createCalendarEntry()}>Create</button>
+            return <button className="btn btn-success createbutton" onClick={() => this.createCalendarEntry()}>Create</button>
         } else {
-            return <button disabled>Create</button>
+            return <span style={{display: 'none'}}></span>
         }
     }
 

@@ -4,6 +4,22 @@
     flex-direction: column;
 }
 
+.head {
+    flex: 1 0 10%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 50px;
+}
+
+.head button {
+    flex: 0 0 10%;
+}
+
+.head h2 {
+    flex: 0 0 90%;
+}
+
 .hours {
     display: flex;
     flex-direction: column;
@@ -17,4 +33,10 @@
 .time {
     position: absolute;
     left: 30px;
+}
+
+.createbutton {
+    position: fixed;
+    bottom: 0;
+    right: 10px;
 }

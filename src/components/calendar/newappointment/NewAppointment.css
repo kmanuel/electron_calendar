@@ -1,0 +1,21 @@
+.appointment-form{
+    display: flex;
+    flex-direction: column;
+    padding-top: 10px;
+}
+
+label {
+    font-size: 1.3em;
+}
+
+input , textarea, button {
+    margin-bottom: 10px;
+}
+
+textarea {
+    resize: none;
+}
+
+.text-area {
+
+}

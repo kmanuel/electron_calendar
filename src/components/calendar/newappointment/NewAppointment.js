@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
 import * as entryStore from '../../../utils/entryStore';
+import './NewAppointment.css';
 
-class NewEntry extends Component {
+
+class NewAppointment extends Component {
     constructor(props) {
         super(props);
         const title = '';
@@ -31,15 +33,17 @@ class NewEntry extends Component {
 
     render() {
         return (
-            <form onSubmit={this.onSubmit}>
+            <form onSubmit={this.onSubmit} class="appointment-form">
                 <label>Title</label>
                 <input type="text" onChange={this.onTitleChange} />
                 <br/>
-                <button>Save</button>
-                <button onClick={this.props.history.goBack} type="button">Cancel</button>
+                <label>Description</label>
+                <textarea cols="30" rows="10"></textarea>
+                <button className="btn btn-success">Save</button>
+                <button className="btn btn-danger" onClick={this.props.history.goBack} type="button">Cancel</button>
             </form>
         );
     }
 }
 
-export default NewEntry;
+export default NewAppointment;

@@ -1,7 +1,7 @@
-const storeEntry = (year, month, day, hours, title) => {
+const storeEntry = (year, month, day, hours, title, description) => {
     const entries = fetchEntries(year, month, day);
 
-    entries.push({hours, title});
+    entries.push({hours, title, description});
 
     localStorage.setItem(createKey(year, month, day), JSON.stringify(entries));
 

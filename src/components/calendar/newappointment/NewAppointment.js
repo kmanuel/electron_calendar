@@ -13,6 +13,7 @@ class NewAppointment extends Component {
         this.state = {title, description, hours};
 
         this.onTitleChange = this.onTitleChange.bind(this);
+        this.onDescriptionChange = this.onDescriptionChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
     }
 
@@ -20,13 +21,17 @@ class NewAppointment extends Component {
         this.setState({title: event.target.value});
     }
 
+    onDescriptionChange(event) {
+        this.setState({description: event.target.value});
+    }
+
     onSubmit(event) {
         event.preventDefault();
 
         const {day, month, year} = this.props.match.params;
-        const {hours, title} = this.state;
+        const {hours, title, description} = this.state;
 
-        entryStore.storeEntry(year, month, day, hours, title);
+        entryStore.storeEntry(year, month, day, hours, title, description);
 
         this.props.history.goBack();
     }
@@ -38,7 +43,7 @@ class NewAppointment extends Component {
                 <input type="text" onChange={this.onTitleChange} />
                 <br/>
                 <label>Description</label>
-                <textarea cols="30" rows="10"></textarea>
+                <textarea cols="30" rows="10" onChange={this.onDescriptionChange} />
                 <button className="btn btn-success">Save</button>
                 <button className="btn btn-danger" onClick={this.props.history.goBack} type="button">Cancel</button>
             </form>

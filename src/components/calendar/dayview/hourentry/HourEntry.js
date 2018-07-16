@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Link} from 'react-router-dom';
 import './HourEntry.css';
 
 class HourEntry extends Component {
@@ -6,8 +7,10 @@ class HourEntry extends Component {
         super(props);
 
         this.state = {
-            selected: false
+            selected: false,
         };
+
+        this.renderAppointments = this.renderAppointments.bind(this);
     }
 
     toggleSelect() {
@@ -26,8 +29,9 @@ class HourEntry extends Component {
     }
 
     renderAppointments() {
+        const date = this.props.date;
         if (this.props.entries) {
-            return this.props.entries.map(e => <span className="appointment-entry" style={{backgroundColor: e.color}}>{e.title}</span>);
+            return this.props.entries.map(e => <Link to={`/appointment/${date.getFullYear()}/${date.getMonth()}/${date.getDate()}/${e.id}`} className="appointment-entry" style={{backgroundColor: e.color}}>{e.title}</Link>);
         }
     }
 

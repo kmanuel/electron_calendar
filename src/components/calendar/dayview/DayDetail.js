@@ -25,11 +25,11 @@ class DayDetail extends Component {
         const {date, month, year} = this.state;
         return (
             <div className="daydetail">
-                <Link to={`/month/${year}/${month}`}>Back</Link>
+                <button onClick={() => this.props.history.goBack()}>Back</button>
                 <h2>{date.toLocaleDateString()}</h2>
                 {this.createButtonIfSelectedHours()}
                 <ol className="hours">
-                    {this.renderHours()}
+                    {this.renderHours(date)}
                 </ol>
             </div>
         );
@@ -42,13 +42,13 @@ class DayDetail extends Component {
         }
     };
 
-    renderHours = () => {
+    renderHours = (date) => {
         //noinspection JSPotentiallyInvalidConstructorUsage
         return Array.from(Array(24))
             .map((e, hour) => {
                 const entries = this.state.calendarDayEntries;
                 const entriesForThisHour = entries.filter(e => e.hours.indexOf('' + hour) != -1);
-                return <HourEntry key={hour} hour={hour} onSelect={this.setSelected} entries={entriesForThisHour}/>
+                return <HourEntry key={hour} date={date} hour={hour} onSelect={this.setSelected} entries={entriesForThisHour}/>
             });
 
     };

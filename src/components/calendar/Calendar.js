@@ -5,6 +5,7 @@ import Index from './Index';
 import MonthView from './monthview/CalendarMonth';
 import DayDetail from './dayview/DayDetail';
 import NewEntry from './newappointment/NewAppointment';
+import AppointmentDetail from './newappointment/AppointmentDetail';
 
 import './Calendar.css';
 
@@ -21,10 +22,11 @@ class Calendar extends Component {
             <div className="calendar">
                 <Router>
                     <div>
-                        <Route exact path="/" component={Index}/>
-                        <Route path="/create/:year/:month/:day" component={NewEntry}/>
-                        <Route exact path="/month/:year/:month/:day/" component={DayDetail}/>
-                        <Route exact path="/month/:year/:month/" component={MonthView}/>
+                        <Route exact path="/" component={Index} />
+                        <Route path="/create/:year/:month/:day" component={NewEntry} />
+                        <Route exact path="/month/:year/:month/:day/" component={DayDetail} />
+                        <Route exact path="/month/:year/:month/" component={MonthView} />
+                        <Route path="/appointment/:year/:month/:day/:id" component={AppointmentDetail} />
                     </div>
                 </Router>
             </div>

@@ -1,0 +1,13 @@
+.appointment-detail {
+    display: flex;
+    flex-direction: column
+}
+
+.title {
+    padding: 10px;
+    font-size: 2em;
+}
+
+.description {
+    padding: 10px;
+}

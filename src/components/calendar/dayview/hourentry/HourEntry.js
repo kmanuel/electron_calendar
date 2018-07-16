@@ -27,7 +27,7 @@ class HourEntry extends Component {
 
     renderAppointments() {
         if (this.props.entries) {
-            return this.props.entries.map(e => <span className="appointment-entry">{e.title}</span>);
+            return this.props.entries.map(e => <span className="appointment-entry" style={{backgroundColor: e.color}}>{e.title}</span>);
         }
     }
 

@@ -15,10 +15,32 @@ class DayDetail extends Component {
 
         const date = new Date(year, month, day);
 
-        const calendarDayEntries = entryStore.fetchEntries(year, month, day);
+        const calendarDayEntries = entryStore.fetchEntries(year, month, day)
+            .map(this.toEntryWithRandomColor);
 
         this.state = {year, month, day, date, selectedHours: [], calendarDayEntries};
     }
+
+    render() {
+        const {date, month, year} = this.state;
+        return (
+            <div className="daydetail">
+                <Link to={`/month/${year}/${month}`}>Back</Link>
+                <h2>{date.toLocaleDateString()}</h2>
+                {this.createButtonIfSelectedHours()}
+                <ol className="hours">
+                    {this.renderHours()}
+                </ol>
+            </div>
+        );
+    }
+
+    toEntryWithRandomColor = (entry) => {
+        return {
+            ...entry,
+            color: this.createRandomColor()
+        }
+    };
 
     renderHours = () => {
         //noinspection JSPotentiallyInvalidConstructorUsage
@@ -26,8 +48,7 @@ class DayDetail extends Component {
             .map((e, hour) => {
                 const entries = this.state.calendarDayEntries;
                 const entriesForThisHour = entries.filter(e => e.hours.indexOf('' + hour) != -1);
-                console.log(entriesForThisHour);
-                return <HourEntry key={hour} hour={hour} onSelect={this.setSelected} entries={entriesForThisHour} />
+                return <HourEntry key={hour} hour={hour} onSelect={this.setSelected} entries={entriesForThisHour}/>
             });
 
     };
@@ -58,18 +79,13 @@ class DayDetail extends Component {
         }
     }
 
-    render() {
-        const {date, month, year} = this.state;
-        return (
-            <div className="daydetail">
-                <Link to={`/month/${year}/${month}`}>Back</Link>
-                <h2>{date.toLocaleDateString()}</h2>
-                {this.createButtonIfSelectedHours()}
-                <ol className="hours">
-                    {this.renderHours()}
-                </ol>
-            </div>
-        );
+    createRandomColor() {
+        const letters = '0123456789ABCDEF';
+        let color = '#';
+        for (let i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
     }
 }
 

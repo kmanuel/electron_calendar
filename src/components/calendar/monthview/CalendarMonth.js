@@ -5,18 +5,13 @@ import * as utils from '../../../utils/calendarUtils';
 import './CalendarMonth.css';
 
 const CalendarMonth = (props) => {
-    const month = parseInt(props.match.params.month);
-    const year = parseInt(props.match.params.year);
-
-    this.state = {
-        month,
-        year
-    };
+    const month = parseInt(props.match.params.month, 10);
+    const year = parseInt(props.match.params.year, 10);
 
     const dayEntries = createDayEntries(month, year);
     return (
         <div>
-            <Navigation month={this.state.month} year={this.state.year} />
+            <Navigation month={month} year={year} />
             <div className="calendarmonth">
                 {dayEntries}
             </div>

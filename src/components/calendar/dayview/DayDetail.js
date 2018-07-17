@@ -8,9 +8,9 @@ class DayDetail extends Component {
     constructor(props) {
         super(props);
 
-        const year = parseInt(props.match.params.year);
-        const month = parseInt(props.match.params.month);
-        const day = parseInt(props.match.params.day);
+        const year = parseInt(props.match.params.year, 10);
+        const month = parseInt(props.match.params.month, 10);
+        const day = parseInt(props.match.params.day, 10);
 
         const date = new Date(year, month, day);
 
@@ -21,12 +21,16 @@ class DayDetail extends Component {
     }
 
     render() {
-        const {date, month, year} = this.state;
+        const {date} = this.state;
         return (
             <div className="daydetail">
-                <span class="head">
-                    <button className="btn" onClick={() => this.props.history.goBack()}>Back</button>
-                    <h2>{date.toLocaleDateString()}</h2>
+                <span className="navigation">
+                    <span className="navigation-back">
+                        <button className="btn" onClick={() => this.props.history.goBack()}>Back</button>
+                    </span>
+                    <span className="navigation-main">
+                        <h2>{date.toLocaleDateString()}</h2>
+                    </span>
                 </span>
                 <ol className="hours">
                     {this.renderHours(date)}
@@ -48,7 +52,7 @@ class DayDetail extends Component {
         return Array.from(Array(24))
             .map((e, hour) => {
                 const entries = this.state.calendarDayEntries;
-                const entriesForThisHour = entries.filter(e => e.hours.indexOf('' + hour) != -1);
+                const entriesForThisHour = entries.filter(e => e.hours.indexOf('' + hour) !== -1);
                 return <HourEntry key={hour} date={date} hour={hour} onSelect={this.setSelected} entries={entriesForThisHour}/>
             });
 

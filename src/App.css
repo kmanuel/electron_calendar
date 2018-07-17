@@ -1,6 +1,7 @@
 .App {
+  position: relative;
   text-align: center;
-  overflow: hidden;
+  height: 100%;
 }
 
 .App-logo {
@@ -35,20 +36,25 @@
   color: white;
   font-weight: bold;
   font-size: 1.1em;
+  background-color: #008CBA;
+}
+
+.btn:hover {
+  background-color: #00bff0;
 }
 
 .btn-success {
-  background-color: green;
+  background-color: #4CAF50;
 }
 
 .btn-success:hover {
-  background-color: lawngreen;
+  background-color: #64ef68;
 }
 
 .btn-danger {
-  background-color: darkred;
+  background-color: #c5352c;
 }
 
 .btn-danger:hover {
-  background-color: red;
+  background-color: #f44336;
 }

@@ -1,7 +1,7 @@
 .appointment-form{
     display: flex;
     flex-direction: column;
-    padding-top: 10px;
+    padding-top: 35px;
 }
 
 label {
@@ -9,11 +9,17 @@ label {
 }
 
 input , textarea, button {
-    margin-bottom: 10px;
+    /*margin-bottom: 5px;*/
 }
 
 textarea {
     resize: none;
+}
+
+.appointment-form .btn-success {
+    position: fixed;
+    top: 0;
+    right: 0;
 }
 
 .text-area {

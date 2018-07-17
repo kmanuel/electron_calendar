@@ -1,15 +1,19 @@
 .day {
+    box-sizing: border-box;
     border: 1px solid black;
-    flex: 0 0 13.75%;
+    flex: 0 0 14.28%;
     height: 25px;
     text-decoration: none;
     color: black;
+    display: flex;
+    align-items: center;
+    justify-content:  center;
 }
 
 .day.active {
-    background-color: #ccc;
+    background-color: #78f4fa;
 }
 
-.day:hover {
-    background-color: red;
+.day[href]:hover {
+    background-color: #00bff0;
 }

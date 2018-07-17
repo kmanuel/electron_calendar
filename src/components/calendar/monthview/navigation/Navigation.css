@@ -1,10 +1,15 @@
 .navigation {
-    background-color: #aaa;
+    background-color: #5ebbd7;
     flex: auto;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
     display: flex;
-    height: 25px;
+    height: 35px;
     align-items: center;
     user-select: none;
+    overflow: hidden;
 }
 
 .month-nav {
@@ -21,10 +26,31 @@
 }
 
 .navigator {
+    font-size: 1.5em;
     text-decoration: none;
     color: black;
 }
 
 .navigator:hover {
     cursor: pointer;
+}
+
+.navigation-back {
+    /*flex: 1 0 10%;*/
+    position: absolute;
+    left: 0;
+    text-align: left;
+    z-index: 9999;
+}
+
+.navigation-back .btn {
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.navigation-main {
+    position: absolute;
+    width: 100%;
+    /*flex: 1 0 90%;*/
 }

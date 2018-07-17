@@ -11,3 +11,9 @@
 .description {
     padding: 10px;
 }
+
+.appointment-detail-body {
+    display: flex;
+    flex-direction: column;
+    margin-top: 35px;
+}

@@ -1,9 +1,36 @@
-.selected {
-    background-color: yellow;
-}
-
 .appointment-entry {
     margin: 5px;
     background-color: lightgreen;
     border-radius: 4px;
+}
+
+.hourentry {
+    display: flex;
+    align-items: center;
+}
+
+.time {
+    font-size: 0.8em;
+    flex: 1 0 15%;
+}
+
+.appointments {
+    flex: 1 0 85%;
+}
+
+.hourentry:nth-child(odd) {
+    background-color: #eee;
+}
+
+.selected::before {
+    content: '\2713';
+    color: green;
+    position: relative;
+    width: 10px;
+    height: 10px;
+    z-index: 999;
+}
+
+.hourentry.day-hour:hover {
+    background-color: #00bff0;
 }

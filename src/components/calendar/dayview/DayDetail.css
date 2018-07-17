@@ -2,6 +2,7 @@
     border: 1px solid black;
     display: flex;
     flex-direction: column;
+    height: 100%;
 }
 
 .head {
@@ -23,6 +24,8 @@
 .hours {
     display: flex;
     flex-direction: column;
+    padding: 0;
+    padding-top: 18px
 }
 
 .day-hour {
@@ -30,13 +33,8 @@
     height: 25px;
 }
 
-.time {
-    position: absolute;
-    left: 30px;
-}
-
 .createbutton {
     position: fixed;
-    bottom: 0;
-    right: 10px;
+    top: 0;
+    right: 0px;
 }

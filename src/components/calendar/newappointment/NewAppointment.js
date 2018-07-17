@@ -38,15 +38,23 @@ class NewAppointment extends Component {
 
     render() {
         return (
-            <form onSubmit={this.onSubmit} class="appointment-form">
-                <label>Title</label>
-                <input type="text" onChange={this.onTitleChange} />
-                <br/>
-                <label>Description</label>
-                <textarea cols="30" rows="10" onChange={this.onDescriptionChange} />
-                <button className="btn btn-success">Save</button>
-                <button className="btn btn-danger" onClick={this.props.history.goBack} type="button">Cancel</button>
-            </form>
+            <div>
+                <span className="navigation">
+                    <span className="navigation-back">
+                        <button className="btn" onClick={() => this.props.history.goBack()}>Back</button>
+                    </span>
+                    <span className="navigation-main">
+                        <h2>New Appointment</h2>
+                    </span>
+                </span>
+                <form onSubmit={this.onSubmit} className="appointment-form">
+                    <label>Title</label>
+                    <input type="text" onChange={this.onTitleChange}/>
+                    <label>Description</label>
+                    <textarea cols="30" rows="5" onChange={this.onDescriptionChange}/>
+                    <button className="btn btn-success">Save</button>
+                </form>
+            </div>
         );
     }
 }

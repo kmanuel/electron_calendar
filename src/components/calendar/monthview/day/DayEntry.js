@@ -2,32 +2,29 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import './Day.css';
 
+const isToday = function (year, month, day) {
+    const today = new Date();
+
+    return today.getFullYear() === year
+        && today.getMonth() === month
+        && today.getDate() === day;
+};
+
+
 const DayEntry = (props) => {
-    const month = parseInt(props.month, 10);
-    const year = parseInt(props.year, 10);
-    const day = parseInt(props.day, 10);
+    const month = props.date.getMonth();
+    const year = props.date.getFullYear();
+    const day = props.date.getDate();
+    const today = isToday(year, month, day);
 
-    const entries = props.entries;
+    return (
+        <Link
+            to={`/month/${year}/${month}/${day}`}
+            className={`day ${today ? 'active' : ''}`}>
+            <span className="daycontent">{day}</span>
+        </Link>
+    );
 
-    const showEntries = () => {
-        if (!entries) {
-            return;
-        }
-        return entries.map(e => <div>entry</div>);
-    };
-
-    if (props.day > 0) {
-        return (
-            <Link to={`/month/${year}/${month}/${day}`} className={`day ${props.today ? 'active' : ''}`}>
-            <span className="daycontent">
-                {props.day}
-                {showEntries()}
-            </span>
-            </Link>
-        );
-    } else {
-        return <div></div>;
-    }
 };
 
 export default DayEntry;

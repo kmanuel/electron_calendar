@@ -11,15 +11,12 @@ class HourEntry extends Component {
         };
 
         this.renderAppointments = this.renderAppointments.bind(this);
+        this.toAppointmentEntry = this.toAppointmentEntry.bind(this);
     }
 
     toggleSelect() {
         this.setState((prevState) => {
-            let prev = prevState.selected;
-            if (!prev) {
-                prev = false;
-            }
-            const newSelected = !prev;
+            const newSelected = !prevState.selected;
             this.props.onSelect(this.props.hour, newSelected);
             return {
                 selected: newSelected
@@ -29,32 +26,39 @@ class HourEntry extends Component {
     }
 
     renderAppointments() {
-        const date = this.props.date;
         if (this.props.entries) {
-            return this.props.entries.map(e => <Link
-                to={`/appointment/${date.getFullYear()}/${date.getMonth()}/${date.getDate()}/${e.id}`}
-                className="appointment-entry" style={{backgroundColor: e.color}}>{e.title}</Link>);
+            return this.props.entries.map(this.toAppointmentEntry);
         }
+    }
+
+    toAppointmentEntry(entry) {
+        const date = this.props.date;
+        const entryLink = `/appointment/${date.getFullYear()}/${date.getMonth()}/${date.getDate()}/${entry.id}`;
+        return (
+            <Link
+                key={entry.id}
+                to={entryLink}
+                className="appointment-entry"
+                style={{backgroundColor: entry.color}}>
+                {entry.title}
+            </Link>
+        );
     }
 
     toDisplayHour(hour) {
-        let from;
-        let to;
-
-        if (hour < 10) {
-            from = '0' + hour;
-        } else {
-            from = hour;
-        }
-
-        if (hour + 1 < 10) {
-            to = '0' + (hour + 1);
-        } else {
-            to = hour + 1;
-        }
-
+        const from = this.padWithZeroIfSingleDigit(hour);
+        const to = this.padWithZeroIfSingleDigit(hour + 1);
         return `${from} - ${to}`;
     }
+
+    padWithZeroIfSingleDigit(hour) {
+        let isSingleDigit = hour < 10;
+        if (isSingleDigit) {
+            return '0' + hour;
+        } else {
+            return hour;
+        }
+    };
 
     render() {
         let {hour} = this.props;

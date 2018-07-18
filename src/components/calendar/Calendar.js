@@ -5,7 +5,7 @@ import Index from './Index';
 import MonthView from './monthview/CalendarMonth';
 import DayDetail from './dayview/DayDetail';
 import NewEntry from './newappointment/NewAppointment';
-import AppointmentDetail from './newappointment/AppointmentDetail';
+import AppointmentDetail from './appointmentdetail/AppointmentDetail';
 
 import './Calendar.css';
 

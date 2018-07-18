@@ -14,10 +14,80 @@ class DayDetail extends Component {
 
         const date = new Date(year, month, day);
 
-        const calendarDayEntries = entryStore.fetchEntries(year, month, day)
-            .map(this.toEntryWithRandomColor);
+        const calendarDayEntries =
+            entryStore
+                .fetchEntries(year, month, day)
+                .map(this.toEntryWithRandomColor);
 
-        this.state = {year, month, day, date, selectedHours: [], calendarDayEntries};
+        this.state = {date, calendarDayEntries, selectedHours: []};
+    }
+
+    toEntryWithRandomColor = (entry) => {
+        return {
+            ...entry,
+            color: this.createRandomColor()
+        }
+    };
+
+    renderHours = (date) => {
+        //noinspection JSPotentiallyInvalidConstructorUsage
+        return Array.from(Array(24))
+            .map((e, hour) => {
+                const entries = this.state.calendarDayEntries;
+                const entriesForThisHour = entries.filter(e => e.hours.indexOf('' + hour) !== -1);
+                return (
+                    <HourEntry
+                        key={hour}
+                        date={date}
+                        hour={hour}
+                        entries={entriesForThisHour}
+                        onSelect={this.setSelected}/>
+                );
+            });
+
+    };
+
+    setSelected = (hour, selected) => {
+        const newState = {...this.state};
+        if (selected) {
+            newState.selectedHours.push(hour);
+        } else {
+            newState.selectedHours.splice(newState.selectedHours.indexOf(hour), 1);
+        }
+        this.setState(newState);
+    };
+
+    createCalendarEntry() {
+        const selectedHours = this.state.selectedHours.join(',');
+        this.props.history.push(`/create/${this.state.date.getFullYear()}/${this.state.date.getMonth()}/${this.state.date.getDate()}?hours=${selectedHours}`);
+    }
+
+    createButtonIfSelectedHours() {
+        const selectedHours = this.state.selectedHours;
+        const hoursSelected = (selectedHours.length > 0);
+
+        if (hoursSelected) {
+            return this.createButton();
+        }
+    }
+
+    createButton() {
+        return (
+            <button
+                className="btn btn-success createbutton"
+                onClick={() => this.createCalendarEntry()}>
+                Create
+            </button>
+        );
+    }
+
+    createRandomColor() {
+        const letters = '0123456789ABCDEF';
+        let color = '#';
+        for (let i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
     }
 
     render() {
@@ -38,59 +108,6 @@ class DayDetail extends Component {
                 {this.createButtonIfSelectedHours()}
             </div>
         );
-    }
-
-    toEntryWithRandomColor = (entry) => {
-        return {
-            ...entry,
-            color: this.createRandomColor()
-        }
-    };
-
-    renderHours = (date) => {
-        //noinspection JSPotentiallyInvalidConstructorUsage
-        return Array.from(Array(24))
-            .map((e, hour) => {
-                const entries = this.state.calendarDayEntries;
-                const entriesForThisHour = entries.filter(e => e.hours.indexOf('' + hour) !== -1);
-                return <HourEntry key={hour} date={date} hour={hour} onSelect={this.setSelected} entries={entriesForThisHour}/>
-            });
-
-    };
-
-    setSelected = (hour, selected) => {
-        const newState = {...this.state};
-        if (selected) {
-            newState.selectedHours.push(hour);
-        } else {
-            newState.selectedHours.splice(newState.selectedHours.indexOf(hour), 1);
-        }
-        this.setState(newState);
-    };
-
-    createCalendarEntry() {
-        const selectedHours = this.state.selectedHours.join(',');
-        this.props.history.push(`/create/${this.state.year}/${this.state.month}/${this.state.day}?hours=${selectedHours}`);
-    }
-
-    createButtonIfSelectedHours() {
-        const selectedHours = this.state.selectedHours;
-
-        const enabled = (selectedHours.length > 0);
-        if (enabled) {
-            return <button className="btn btn-success createbutton" onClick={() => this.createCalendarEntry()}>Create</button>
-        } else {
-            return <span style={{display: 'none'}}></span>
-        }
-    }
-
-    createRandomColor() {
-        const letters = '0123456789ABCDEF';
-        let color = '#';
-        for (let i = 0; i < 6; i++) {
-            color += letters[Math.floor(Math.random() * 16)];
-        }
-        return color;
     }
 }
 

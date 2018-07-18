@@ -11,7 +11,7 @@ const CalendarMonth = (props) => {
     const dayEntries = createDayEntries(month, year);
     return (
         <div>
-            <Navigation month={month} year={year} />
+            <Navigation month={month} year={year}/>
             <div className="calendarmonth">
                 {dayEntries}
             </div>
@@ -19,9 +19,18 @@ const CalendarMonth = (props) => {
     );
 };
 
-const isToday = function (year, month, i, offset) {
-    const today = new Date();
-    return today.getFullYear() === year && today.getMonth() === month && today.getDate() === (i - offset + 1);
+const createDayEntries = (month, year) => {
+    let daysInCurrentMonth = utils.daysInMonth(month, year);
+    const weekdayOffset = utils.getWeekdayOffsetForMonth(month, year);
+
+    return Array.from(Array(daysInCurrentMonth + weekdayOffset))
+        .map((e, i) => {
+            if (i < weekdayOffset) {
+                return fillerEntry(i);
+            } else {
+                return dayEntry(year, month, i, weekdayOffset);
+            }
+        });
 };
 
 const fillerEntry = function (i) {
@@ -29,27 +38,8 @@ const fillerEntry = function (i) {
 };
 
 const dayEntry = function (year, month, i, offset) {
-    let today = isToday(year, month, i, offset);
-    return <DayEntry key={i} month={month} year={year} day={i + 1 - offset} today={today}/>
-};
-
-const createDayEntries = (month, year) => {
-    const createNDayEntries = function (entryCount, offset = 0) {
-        //noinspection UnreachableCodeJS,JSPotentiallyInvalidConstructorUsage
-        return Array.from(Array(entryCount + offset))
-            .map((e, i) => {
-                if (i < offset) {
-                    return fillerEntry(i);
-                } else {
-                    return dayEntry(year, month, i, offset);
-                }
-            });
-    };
-
-    let daysInCurrentMonth = utils.daysInMonth(month, year);
-    const weekdayOffset = utils.getWeekdayOffsetForMonth(month, year);
-
-    return createNDayEntries(daysInCurrentMonth, weekdayOffset);
+    const date = new Date(year, month, i + 1 - offset);
+    return <DayEntry key={i} date={date}/>
 };
 
 export default CalendarMonth;
